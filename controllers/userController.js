@@ -27,10 +27,17 @@ router.post('/authenticate', (req, res) => {
                 req.session.user = {
                     id: user.id,
                     nome: user.nome,
-                    email: user.email
+                    email: user.email,
+                    superUser: user.superUser,
+                    superUserMaster: user.superUserMaster,
+                    token : user.superUserToken
                 }
-                
-                res.render('admin', { id: req.session.user.id, nome: req.session.user.nome }); //Lembrar de enviar para a pagina de escolha;
+                if(user.superUser === 'True'){
+                    res.json({msg: 'Parabéns você é um ADMIN'}) //Lembrar de enviar para a pagina de escolha;
+                }else{
+                    res.render('admin', { id: req.session.user.id, nome: req.session.user.nome }); //Lembrar de enviar para a pagina de escolha;
+                }
+               
             } else {
                 res.send("<script>alert('Senha inválida'); window.location.href = '/'; </script>"); 
             }

@@ -46,7 +46,20 @@ const Paciente = connection.define('users', {
     crm: { 
         type: Sequelize.TEXT,
               allowNull: false
-    }
+    },
+    superUser: { 
+        type: Sequelize.STRING,
+              allowNull: true
+    },
+    superUserMaster: { 
+        type: Sequelize.STRING,
+              allowNull: true
+    },
+    token: { 
+        type: Sequelize.STRING,
+              allowNull: true
+    },
+
 })
 
 Paciente.sync({ force: false });
